@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf9f6; /* Off-white / Pearl */
+  --foreground: #2d3748; /* Dark Slate for text readability */
+  
+  --gold-50: #fefce8;
+  --gold-100: #fef9c3;
+  --gold-200: #fef08a;
+  --gold-300: #fde047;
+  --gold-400: #facc15;
+  --gold-500: #eab308;
+  --gold-600: #ca8a04;
+  --gold-700: #a16207;
+  
+  --saffron: #f97316; /* Warm accent */
+  --saffron-light: #ffedd5;
+  --forest: #166534; /* For success/verified states */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-gold-50: var(--gold-50);
+  --color-gold-100: var(--gold-100);
+  --color-gold-200: var(--gold-200);
+  --color-gold-300: var(--gold-300);
+  --color-gold-400: var(--gold-400);
+  --color-gold-500: var(--gold-500);
+  --color-gold-600: var(--gold-600);
+  --color-gold-700: var(--gold-700);
+  --color-saffron: var(--saffron);
+  --color-saffron-light: var(--saffron-light);
+  --color-forest: var(--forest);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* Very subtle gradient overlay for premium feel */
+  background-image: radial-gradient(at 100% 0%, rgba(254, 249, 195, 0.4) 0px, transparent 50%),
+                    radial-gradient(at 0% 100%, rgba(255, 237, 213, 0.4) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Premium UI utilities */
+.formal-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(253, 224, 71, 0.3); /* subtle gold border */
+  box-shadow: 0 4px 20px -2px rgba(234, 179, 8, 0.05), 0 0 3px rgba(0,0,0,0.02);
+}
+
+.formal-input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.formal-input:focus {
+  border-color: var(--gold-400);
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15);
+  outline: none;
+}
+
