@@ -223,10 +223,10 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
       {/* Header */}
       <div className="mb-10">
         <h2 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
-          <Scale className="text-gold-600" size={32} />
+          <Scale className="text-brand-600" size={32} />
           Legal Assessment Engine
         </h2>
-        <p className="text-slate-500 mt-3 text-lg max-w-2xl">
+        <p className="text-slate-500 dark:text-slate-400 mt-3 text-lg max-w-2xl">
           Please provide precise technical details for accurate classification and regulatory assessment.
         </p>
       </div>
@@ -242,15 +242,15 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
                 onClick={() => idx < currentStep && setCurrentStep(idx)}
                 disabled={idx > currentStep}
                 className={`w-10 h-10 rounded-full flex shrink-0 items-center justify-center text-sm font-bold z-10 transition-all duration-300
-                  ${isCompleted ? 'bg-gold-500 text-white cursor-pointer hover:bg-gold-600 hover:scale-110 shadow-sm' : 
-                    isCurrent ? 'bg-white text-gold-600 ring-4 ring-gold-200 shadow-md border-2 border-gold-400' : 
-                    'bg-white text-slate-400 border border-slate-200 cursor-not-allowed'}
+                  ${isCompleted ? 'bg-brand-500 text-white cursor-pointer hover:bg-brand-600 hover:scale-110 shadow-sm' : 
+                    isCurrent ? 'bg-white dark:bg-slate-900 text-brand-600 ring-4 ring-brand-200 shadow-md border-2 border-brand-400' : 
+                    'bg-white dark:bg-slate-900 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-800 cursor-not-allowed'}
                 `}
               >
                 {isCompleted ? <CheckCircle2 size={18} /> : m.id}
               </button>
               {idx < MODULES.length - 1 && (
-                <div className={`h-1 w-full -mt-5 -z-10 translate-x-1/2 transition-colors duration-500 ${isCompleted ? 'bg-gold-400' : 'bg-slate-200'}`} />
+                <div className={`h-1 w-full -mt-5 -z-10 translate-x-1/2 transition-colors duration-500 ${isCompleted ? 'bg-brand-400' : 'bg-slate-200 dark:bg-slate-700'}`} />
               )}
             </div>
           );
@@ -258,19 +258,19 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
       </div>
 
       {/* Main Form Content Area */}
-      <div className="formal-panel rounded-2xl p-8 lg:p-12 relative z-30 bg-white">
-        <div className="mb-10 pb-6 border-b border-gold-100">
-          <div className="flex items-center gap-2 text-sm font-bold text-gold-600 uppercase tracking-widest mb-2">
+      <div className="formal-panel rounded-2xl p-8 lg:p-12 relative z-30 bg-white dark:bg-slate-900">
+        <div className="mb-10 pb-6 border-b border-brand-100">
+          <div className="flex items-center gap-2 text-sm font-bold text-brand-600 uppercase tracking-widest mb-2">
             Module {module.id} of {MODULES.length}
           </div>
-          <h3 className="text-3xl font-bold text-slate-800">{module.title}</h3>
-          <p className="text-slate-500 mt-3 text-base leading-relaxed">{module.description}</p>
+          <h3 className="text-3xl font-bold text-slate-800 dark:text-slate-100">{module.title}</h3>
+          <p className="text-slate-500 dark:text-slate-400 mt-3 text-base leading-relaxed">{module.description}</p>
         </div>
 
         <div className="space-y-12">
           {module.fields.map((field) => (
             <div key={field.name} className="animate-in slide-in-from-right-4 duration-300">
-              <label className="block text-lg font-bold text-slate-800 mb-5 flex items-center">
+              <label className="block text-lg font-bold text-slate-800 dark:text-slate-100 mb-5 flex items-center">
                 {field.label}
                 <FieldHelper title={field.label} />
               </label>
@@ -288,8 +288,8 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
                       key={optionLabel} 
                       className={`flex flex-col rounded-xl border-2 cursor-pointer transition-all duration-300 group ${
                         isSelected
-                          ? 'border-gold-400 bg-gold-50/20 shadow-sm'
-                          : 'border-slate-200 bg-white hover:border-gold-300 hover:shadow-sm'
+                          ? 'border-brand-400 bg-brand-50/20 shadow-sm'
+                          : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-brand-300 hover:shadow-sm'
                       }`}
                     >
                       <div className="flex items-center p-4">
@@ -306,12 +306,12 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
                                 handleCheckboxChange(field.name, optionLabel, e.target.checked);
                               }
                             }}
-                            className={`w-5 h-5 text-gold-500 focus:ring-gold-400 border-slate-300 ${field.type === 'radio' ? 'focus:ring-2' : 'rounded'} transition-all`}
+                            className={`w-5 h-5 text-brand-500 focus:ring-brand-400 border-slate-300 dark:border-slate-700 ${field.type === 'radio' ? 'focus:ring-2' : 'rounded'} transition-all`}
                           />
                         </div>
                         <div className={`ml-4 text-[15px] font-semibold transition-colors ${
                           isSelected
-                            ? 'text-gold-900'
+                            ? 'text-brand-900'
                             : 'text-slate-600 group-hover:text-slate-900'
                         }`}>
                           {optionLabel}
@@ -321,7 +321,7 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
                       {/* Accordion Expandable Content */}
                       <div className={`grid transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${isSelected ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                         <div className="overflow-hidden">
-                          <div className="pb-4 pt-1 pr-4 ml-[3.25rem] text-sm text-slate-500 leading-relaxed">
+                          <div className="pb-4 pt-1 pr-4 ml-[3.25rem] text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                             {optionDescription}
                           </div>
                         </div>
@@ -335,11 +335,11 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-12 pt-8 border-t border-slate-100">
+        <div className="flex items-center justify-between mt-12 pt-8 border-t border-slate-100 dark:border-slate-800">
           <button
             onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}
             disabled={currentStep === 0}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 disabled:opacity-0 disabled:cursor-default transition-all"
+            className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-0 disabled:cursor-default transition-all"
           >
             <ArrowLeft size={18} />
             Previous Module
@@ -347,7 +347,7 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
           
           <button
             onClick={handleNext}
-            className="flex items-center gap-2 px-8 py-3.5 rounded-xl text-sm font-bold text-slate-800 bg-white border border-slate-300 hover:border-gold-400 hover:text-gold-700 hover:bg-gold-50/50 shadow-sm hover:shadow-md transition-all"
+            className="flex items-center gap-2 px-8 py-3.5 rounded-xl text-sm font-bold text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-brand-400 hover:text-brand-700 hover:bg-brand-50/50 shadow-sm hover:shadow-md transition-all"
           >
             {isLastStep ? 'Process Legal Assessment' : 'Save & Continue'}
             {isLastStep ? <CheckCircle2 size={18} /> : <ChevronRight size={18} />}

@@ -11,14 +11,14 @@ interface CitationCardProps {
 
 export default function CitationCard({ source, section, url, confidence = "high" }: CitationCardProps) {
   return (
-    <div className="flex items-center justify-between p-3 my-2 rounded-lg border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+    <div className="flex items-center justify-between p-3 my-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start gap-3">
         <div className="mt-0.5 text-gov-blue-600">
           <Scroll size={18} />
         </div>
         <div>
-          <h4 className="text-sm font-bold text-slate-800">{source}</h4>
-          <p className="text-xs text-slate-500">{section}</p>
+          <h4 className="text-sm font-bold text-slate-800 dark:text-slate-100">{source}</h4>
+          <p className="text-xs text-slate-500 dark:text-slate-400">{section}</p>
         </div>
       </div>
       

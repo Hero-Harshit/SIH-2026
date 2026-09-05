@@ -95,20 +95,20 @@ export default function ChatInterface({ formData }: { formData: any }) {
     <div className="w-full mx-auto h-[calc(100vh-8rem)] flex flex-col formal-panel rounded-2xl overflow-hidden animate-in slide-in-from-bottom-8 duration-500 mt-2">
       
       {/* Disclaimer Header */}
-      <div className="bg-gold-50/50 px-4 py-2 border-b border-gold-100 flex items-center justify-center gap-2 text-xs text-gold-700 font-medium">
+      <div className="bg-brand-50/50 px-4 py-2 border-b border-brand-100 flex items-center justify-center gap-2 text-xs text-brand-700 font-medium">
         <Info size={14} />
         LAURA provides regulatory information, not legal advice.
       </div>
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-white/40">
+      <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-white/40 dark:bg-slate-800/40">
         {messages.map((msg) => (
           <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
             <div 
               className={`max-w-[85%] p-5 rounded-2xl shadow-sm border ${
                 msg.role === "user" 
-                  ? "bg-gradient-to-br from-gold-500 to-saffron border-gold-600 text-white rounded-tr-sm"
-                  : "bg-white border-slate-100 text-slate-800 rounded-tl-sm"
+                  ? "bg-gradient-to-br from-brand-500 to-brand-accent border-brand-600 text-white rounded-tr-sm"
+                  : "bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 text-slate-800 dark:text-slate-100 rounded-tl-sm"
               }`}
             >
               <div className="whitespace-pre-wrap leading-relaxed text-[15px] prose prose-slate">
@@ -117,8 +117,8 @@ export default function ChatInterface({ formData }: { formData: any }) {
               
               {/* Citations block */}
               {msg.citations && msg.citations.length > 0 && (
-                <div className="mt-5 pt-4 border-t border-slate-100">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Citations & Authorities</span>
+                <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800">
+                  <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Citations & Authorities</span>
                   <div className="mt-3 space-y-2">
                     {msg.citations.map((cit, idx) => (
                       <CitationCard 
@@ -138,7 +138,7 @@ export default function ChatInterface({ formData }: { formData: any }) {
         {/* Real-time Status Ping UI */}
         {currentStatus && (
           <div className="flex justify-start animate-in fade-in">
-            <div className="max-w-[80%] p-3 px-5 rounded-xl bg-white border border-gold-100 text-gold-600 shadow-sm flex items-center gap-3">
+            <div className="max-w-[80%] p-3 px-5 rounded-xl bg-white dark:bg-slate-900 border border-brand-100 text-brand-600 shadow-sm flex items-center gap-3">
               <Loader2 className="animate-spin" size={16} />
               <span className="text-sm font-semibold animate-pulse">{currentStatus}</span>
             </div>
@@ -148,7 +148,7 @@ export default function ChatInterface({ formData }: { formData: any }) {
       </div>
 
       {/* Input Area */}
-      <div className="p-4 bg-white/80 backdrop-blur-md border-t border-gold-100">
+      <div className="p-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-brand-100">
         <div className="relative flex items-center max-w-4xl mx-auto">
           <input
             type="text"
@@ -162,7 +162,7 @@ export default function ChatInterface({ formData }: { formData: any }) {
           <button
             onClick={handleSend}
             disabled={!input.trim() || isTyping}
-            className="absolute right-2 p-2.5 rounded-lg bg-gradient-to-r from-gold-500 to-saffron text-white disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md hover:scale-105 transition-all"
+            className="absolute right-2 p-2.5 rounded-lg bg-gradient-to-r from-brand-500 to-brand-accent text-white disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md hover:scale-105 transition-all"
           >
             <Send size={18} />
           </button>
