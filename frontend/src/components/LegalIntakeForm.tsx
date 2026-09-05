@@ -1,8 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, CheckCircle2, ChevronRight, Scale } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ChevronRight, Scale, Sparkles } from "lucide-react";
 import FieldHelper from "./FieldHelper";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 interface LegalIntakeFormProps {
   onComplete: (data: any) => void;
@@ -190,6 +197,11 @@ const MODULES = [
 export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Record<string, any>>({});
+  const [activeContext, setActiveContext] = useState<string | null>(null);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  
+  const [isContextLoading, setIsContextLoading] = useState(false);
+  const [contextExplanation, setContextExplanation] = useState<string | null>(null);
 
   const module = MODULES[currentStep];
   const isLastStep = currentStep === MODULES.length - 1;
@@ -215,6 +227,19 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
     } else {
       setCurrentStep((prev) => prev + 1);
     }
+  };
+
+  const handleOpenContext = (title: string) => {
+    setActiveContext(title);
+    setIsSheetOpen(true);
+    setContextExplanation(null);
+    setIsContextLoading(true);
+    
+    // Simulate AI context retrieval
+    setTimeout(() => {
+      setContextExplanation(`This is the legal context and sources for "${title}". The AI engine would query the database here to provide actionable insights.`);
+      setIsContextLoading(false);
+    }, 1500);
   };
 
   return (
@@ -272,7 +297,7 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
             <div key={field.name} className="animate-in slide-in-from-right-4 duration-300">
               <label className="block text-lg font-bold text-slate-800 mb-5 flex items-center">
                 {field.label}
-                <FieldHelper title={field.label} />
+                <FieldHelper title={field.label} onOpenContext={handleOpenContext} />
               </label>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -341,6 +366,50 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
           </button>
         </div>
       </div>
+
+      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+        <SheetContent className="w-full sm:max-w-md overflow-y-auto">
+          <SheetHeader className="mb-6">
+            <div className="flex items-center gap-2 text-sm font-bold text-gov-blue-700 uppercase tracking-wider mb-2">
+              <Sparkles size={16} />
+              Sources & Legal Context
+            </div>
+            <SheetTitle className="text-xl">{activeContext}</SheetTitle>
+            <SheetDescription>
+              Understand the regulatory implications of this field.
+            </SheetDescription>
+          </SheetHeader>
+          
+          <div className="mt-4">
+            {isContextLoading ? (
+              <div className="flex flex-col items-center justify-center py-12 text-slate-500">
+                <div className="w-8 h-8 border-4 border-gov-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                Analyzing regulatory acts and schedules...
+              </div>
+            ) : (
+              <div className="prose prose-sm prose-slate text-slate-700">
+                <p className="text-base leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100">
+                  {contextExplanation}
+                </p>
+                
+                <div className="mt-8">
+                  <h4 className="font-bold text-slate-900 mb-3 border-b pb-2">Primary Statutes</h4>
+                  <ul className="space-y-2">
+                    <li className="flex gap-2">
+                      <Scale className="text-slate-400 shrink-0 mt-0.5" size={16} />
+                      <span>Drugs and Cosmetics Act, 1940</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <Scale className="text-slate-400 shrink-0 mt-0.5" size={16} />
+                      <span>Biological Diversity Act, 2002</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
