@@ -1,15 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, CheckCircle2, ChevronRight, Scale, Sparkles } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ChevronRight, Scale } from "lucide-react";
 import FieldHelper from "./FieldHelper";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
 
 interface LegalIntakeFormProps {
   onComplete: (data: any) => void;
@@ -26,10 +19,10 @@ const MODULES = [
         label: "Applicant Type",
         type: "radio",
         options: [
-          "Individual AYUSH Practitioner / Vaidya / Hakim",
-          "Indian Start-up / MSME",
-          "Indian Large Corporate",
-          "Foreign Entity / Company with foreign equity/shareholding"
+          { label: "Individual AYUSH Practitioner / Vaidya / Hakim", description: "Typically exempt from stringent prior-approval under Section 7 of the Biological Diversity Act for local practice. Limited to small-scale dispensing without commercial branding." },
+          { label: "Indian Start-up / MSME", description: "Eligible for fee concessions and expedited review under the Startup India initiative. May still require State Biodiversity Board (SBB) intimation for commercial utilization." },
+          { label: "Indian Large Corporate", description: "Must strictly comply with Section 7 of the BD Act by providing prior intimation to the SBB. Full commercial licensing required under Drugs & Cosmetics Rules." },
+          { label: "Foreign Entity / Company with foreign equity/shareholding", description: "Requires mandatory prior approval from the National Biodiversity Authority (NBA) under Section 3 of the BD Act. Subject to stricter Access and Benefit Sharing (ABS) obligations." }
         ]
       },
       {
@@ -37,9 +30,9 @@ const MODULES = [
         label: "Stage of Development",
         type: "radio",
         options: [
-          "Concept / Lab scale",
-          "Formulation ready, seeking manufacturing license",
-          "Commercialized & selling in market"
+          { label: "Concept / Lab scale", description: "Focus is on R&D exemptions under Section 5 of the BD Act. No immediate manufacturing license required from the State Licensing Authority (SLA)." },
+          { label: "Formulation ready, seeking manufacturing license", description: "Triggers requirement for Form 24D application under Rule 153. Requires evidence of safety, rationale, and potentially clinical trial data." },
+          { label: "Commercialized & selling in market", description: "Requires ongoing compliance with pharmacovigilance (ASU) guidelines. Subject to post-market surveillance and renewal of GMP certificates." }
         ]
       }
     ]
@@ -54,10 +47,10 @@ const MODULES = [
         label: "Textual Source",
         type: "radio",
         options: [
-          "Directly from a First Schedule Text (e.g., Charaka Samhita)",
-          "Modified recipe from a First Schedule text",
-          "Completely novel / indigenous recipe from folk/tribal knowledge",
-          "Purified fraction/isolated extract"
+          { label: "Directly from a First Schedule Text (e.g., Charaka Samhita)", description: "Classified as a Classical (Shastric) ASU medicine. No new safety/efficacy data required; licensed under standard classical provisions." },
+          { label: "Modified recipe from a First Schedule text", description: "Considered a Patent & Proprietary (P&P) medicine. Requires documented rationale for modification and proof of safety under Rule 158B." },
+          { label: "Completely novel / indigenous recipe from folk/tribal knowledge", description: "May require New Drug approval if no prior documented history exists. Triggers specific Benefit Sharing agreements with indigenous knowledge holders." },
+          { label: "Purified fraction/isolated extract", description: "Likely crosses into the 'Phytopharmaceutical Drug' category under CDSCO rules. Requires extensive pre-clinical and clinical trial data comparable to allopathic drugs." }
         ]
       },
       {
@@ -65,10 +58,10 @@ const MODULES = [
         label: "Extraction & Processing",
         type: "checkbox",
         options: [
-          "Traditional methods (Kashaya, Asava, Arishta, Bhasma, Taila)",
-          "Modern hydro-alcoholic / solvent extraction",
-          "Standardized fraction (minimum 4 bioactive markers identified)",
-          "Nanotechnology / novel drug delivery system (NDDS)"
+          { label: "Traditional methods (Kashaya, Asava, Arishta, Bhasma, Taila)", description: "Regulated strictly under standard ASU manufacturing protocols (GMP). Recognized by the Pharmacopoeia Commission for Indian Medicine & Homoeopathy (PCIM&H)." },
+          { label: "Modern hydro-alcoholic / solvent extraction", description: "Requires specific disclosures on solvent residues. Permitted for Proprietary medicines but must meet Pharmacopoeial standards for heavy metals and toxicity." },
+          { label: "Standardized fraction (minimum 4 bioactive markers identified)", description: "Mandatory for Phytopharmaceutical classification under Schedule Y. Enhances patentability but requires sophisticated QA/QC infrastructure." },
+          { label: "Nanotechnology / novel drug delivery system (NDDS)", description: "Regulated as a 'New Drug' under CDSCO regardless of herbal origin. Requires full Phase I-III clinical trial pathways before commercialization." }
         ]
       }
     ]
@@ -83,10 +76,10 @@ const MODULES = [
         label: "Ingredient Origin",
         type: "checkbox",
         options: [
-          "Wild-harvested from forests in India",
-          "Cultivated on commercial farmland in India",
-          "Imported from abroad",
-          "Plant tissue culture / synthesized"
+          { label: "Wild-harvested from forests in India", description: "High risk of triggering NBA/SBB oversight. Requires transit passes and proof of legal procurement from Joint Forest Management Committees (JFMCs)." },
+          { label: "Cultivated on commercial farmland in India", description: "Generally exempt from ABS obligations if certified as cultivated. Requires origin certificate from the agriculture/horticulture department or Gram Panchayat." },
+          { label: "Imported from abroad", description: "Exempt from India's Biological Diversity Act, provided species is not found in India. Must comply with Plant Quarantine Order and Customs regulations." },
+          { label: "Plant tissue culture / synthesized", description: "Often falls outside standard wild-collection regulations. Still requires baseline safety data if the synthetic equivalent differs functionally." }
         ]
       },
       {
@@ -94,8 +87,8 @@ const MODULES = [
         label: "NTAC Status Check",
         type: "radio",
         options: [
-          "Contains ONLY items on the 'Normally Traded as Commodities' list",
-          "Contains non-NTAC biological resources"
+          { label: "Contains ONLY items on the 'Normally Traded as Commodities' list", description: "Exempt from Access and Benefit Sharing (ABS) obligations under Section 40 of the BD Act. Simplifies supply chain compliance significantly." },
+          { label: "Contains non-NTAC biological resources", description: "Triggers mandatory ABS compliance. Requires filing Form I (NBA) or Form A (SBB) and payment of benefit-sharing fees (0.1% to 0.5% of gross sales)." }
         ]
       },
       {
@@ -103,9 +96,9 @@ const MODULES = [
         label: "Hazardous / Schedule E(1) Check",
         type: "checkbox",
         options: [
-          "Contains ingredients like Bhang (Cannabis), Vatsanabha (Aconite), Kupilu (Strychnos)",
-          "Contains Parada (Purified Mercury) or Arsenic compounds",
-          "None of the above"
+          { label: "Contains ingredients like Bhang (Cannabis), Vatsanabha (Aconite), Kupilu (Strychnos)", description: "Regulated under Schedule E(1). Mandatory requirement to display 'Caution: To be taken under medical supervision' on the product label." },
+          { label: "Contains Parada (Purified Mercury) or Arsenic compounds", description: "Strictly regulated Rasa Aushadhis. Requires mandatory acute, sub-acute, and chronic toxicity data as per Rule 161B." },
+          { label: "None of the above", description: "Standard labeling requirements apply under Rule 161. Over-the-counter (OTC) sales permitted without specific medical supervision warnings." }
         ]
       }
     ]
@@ -120,9 +113,9 @@ const MODULES = [
         label: "Product Form",
         type: "radio",
         options: [
-          "Oral (Tablets, Churna, Syrup, Kadha)",
-          "Topical/External (Oil, Lepa, Cream, Wash)",
-          "Inhalation / Nasal (Nasya, Dhoopana)"
+          { label: "Oral (Tablets, Churna, Syrup, Kadha)", description: "Default classification as an internal medicine. Subject to strict heavy metal, pesticide, and microbial load limits as per Pharmacopoeia." },
+          { label: "Topical/External (Oil, Lepa, Cream, Wash)", description: "If claiming only beautification, may be licensed as an Ayurvedic Cosmetic. If claiming treatment (e.g., Eczema), licensed as an external ASU drug." },
+          { label: "Inhalation / Nasal (Nasya, Dhoopana)", description: "Specialized delivery route requiring specific mucosal toxicity data if modified from classical texts. Not permitted under generic FSSAI rules." }
         ]
       },
       {
@@ -130,9 +123,9 @@ const MODULES = [
         label: "Intended Benefit Claim",
         type: "checkbox",
         options: [
-          "General wellness / immunity / digestion / rejuvenation (Rasayana)",
-          "Beautification, skin glow, hair conditioning",
-          "Prevention or treatment of a specific disease"
+          { label: "General wellness / immunity / digestion / rejuvenation (Rasayana)", description: "Eligible for licensing as Ayurveda-Aahar under FSSAI (if food format) or generic Proprietary ASU medicine with minimal efficacy data." },
+          { label: "Beautification, skin glow, hair conditioning", description: "Falls under the purview of Ayurvedic Cosmetics (Rule 169). Simplifies licensing but prohibits any therapeutic or disease-curing claims on the label." },
+          { label: "Prevention or treatment of a specific disease", description: "Classified as a therapeutic drug. Prohibited from making misleading claims under the Drugs and Magic Remedies (Objectionable Advertisements) Act, 1954." }
         ]
       },
       {
@@ -140,8 +133,8 @@ const MODULES = [
         label: "Target Conditions Check",
         type: "checkbox",
         options: [
-          "Claims on Diabetes, Cancer, Infertility, Obesity, Kidney stones",
-          "None of the listed Schedule J conditions"
+          { label: "Claims on Diabetes, Cancer, Infertility, Obesity, Kidney stones", description: "Strictly prohibited from advertisement under the Drugs and Magic Remedies Act. Violations attract immediate prosecution and product recall." },
+          { label: "None of the listed Schedule J conditions", description: "Cleared for general advertisement subject to standard AYUSH advertising guidelines and ASCI (Advertising Standards Council of India) clearance." }
         ]
       }
     ]
@@ -156,9 +149,9 @@ const MODULES = [
         label: "Synergy & Efficacy Data",
         type: "radio",
         options: [
-          "Simple mixture of herbs without formal data",
-          "In-vitro / in-vivo animal data showing synergistic therapeutic activity",
-          "Human clinical trial data (CTRI registered)"
+          { label: "Simple mixture of herbs without formal data", description: "Not patentable under Section 3(e) of the Indian Patents Act (mere admixture). Sufficient for basic Proprietary medicine licensing." },
+          { label: "In-vitro / in-vivo animal data showing synergistic therapeutic activity", description: "Overcomes Section 3(e) patent objections by demonstrating synergy. Provides strong scientific backing for therapeutic claims." },
+          { label: "Human clinical trial data (CTRI registered)", description: "Gold standard for efficacy. Required for New Drugs and Phytopharmaceuticals. Allows for specific, validated therapeutic claims on packaging." }
         ]
       },
       {
@@ -166,10 +159,10 @@ const MODULES = [
         label: "Novelty Claim",
         type: "checkbox",
         options: [
-          "Novel formulation ratio",
-          "Novel extraction/purification method",
-          "New medical use of a known herb",
-          "Novel dosage form (e.g., transdermal patch)"
+          { label: "Novel formulation ratio", description: "Must prove that the specific ratio results in an unexpected technical effect to overcome obviousness objections during patent examination." },
+          { label: "Novel extraction/purification method", description: "Highly patentable as a process patent. Protects the manufacturing methodology even if the botanical ingredients are well-known." },
+          { label: "New medical use of a known herb", description: "Not patentable in India under Section 3(d) (new use of a known substance). May be patentable in foreign jurisdictions like the US or EU." },
+          { label: "Novel dosage form (e.g., transdermal patch)", description: "Patentable if the new form enhances therapeutic efficacy significantly. Requires specific stability and delivery validation data." }
         ]
       }
     ]
@@ -184,10 +177,10 @@ const MODULES = [
         label: "Target Geography",
         type: "checkbox",
         options: [
-          "Domestic (India only)",
-          "United States (FDA / DSHEA)",
-          "European Union (EMA THMPD Directive)",
-          "Global PCT patent filing"
+          { label: "Domestic (India only)", description: "Subject only to CDSCO/AYUSH, FSSAI, and NBA regulations. Simplest compliance pathway for early-stage commercialization." },
+          { label: "United States (FDA / DSHEA)", description: "Cannot be marketed as a 'drug' without clinical trials. Must be labeled as a 'Dietary Supplement' adhering to DSHEA regulations and cGMP." },
+          { label: "European Union (EMA THMPD Directive)", description: "Requires registration under the Traditional Herbal Medicinal Products Directive. Must prove 30 years of safe use (15 years within the EU)." },
+          { label: "Global PCT patent filing", description: "Requires filing within 12 months of the Indian priority application. Mandatory requirement to obtain NBA approval BEFORE filing foreign patents." }
         ]
       }
     ]
@@ -197,11 +190,6 @@ const MODULES = [
 export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Record<string, any>>({});
-  const [activeContext, setActiveContext] = useState<string | null>(null);
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-  
-  const [isContextLoading, setIsContextLoading] = useState(false);
-  const [contextExplanation, setContextExplanation] = useState<string | null>(null);
 
   const module = MODULES[currentStep];
   const isLastStep = currentStep === MODULES.length - 1;
@@ -227,19 +215,6 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
     } else {
       setCurrentStep((prev) => prev + 1);
     }
-  };
-
-  const handleOpenContext = (title: string) => {
-    setActiveContext(title);
-    setIsSheetOpen(true);
-    setContextExplanation(null);
-    setIsContextLoading(true);
-    
-    // Simulate AI context retrieval
-    setTimeout(() => {
-      setContextExplanation(`This is the legal context and sources for "${title}". The AI engine would query the database here to provide actionable insights.`);
-      setIsContextLoading(false);
-    }, 1500);
   };
 
   return (
@@ -283,7 +258,7 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
       </div>
 
       {/* Main Form Content Area */}
-      <div className="formal-panel rounded-2xl p-8 lg:p-12">
+      <div className="formal-panel rounded-2xl p-8 lg:p-12 relative z-30 bg-white">
         <div className="mb-10 pb-6 border-b border-gold-100">
           <div className="flex items-center gap-2 text-sm font-bold text-gold-600 uppercase tracking-widest mb-2">
             Module {module.id} of {MODULES.length}
@@ -297,50 +272,63 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
             <div key={field.name} className="animate-in slide-in-from-right-4 duration-300">
               <label className="block text-lg font-bold text-slate-800 mb-5 flex items-center">
                 {field.label}
-                <FieldHelper title={field.label} onOpenContext={handleOpenContext} />
+                <FieldHelper title={field.label} />
               </label>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {field.options.map((option) => (
-                  <label 
-                    key={option} 
-                    className={`flex items-start p-5 rounded-xl border-2 cursor-pointer transition-all duration-200 group ${
-                      (field.type === 'radio' && formData[field.name] === option) || 
-                      (field.type === 'checkbox' && (formData[field.name] || []).includes(option))
-                        ? 'border-gold-400 bg-gold-50/50 shadow-sm transform scale-[1.01]'
-                        : 'border-slate-200 bg-white hover:border-gold-300 hover:bg-slate-50'
-                    }`}
-                  >
-                    <div className="flex items-center h-6 mt-0.5 shrink-0">
-                      <input
-                        type={field.type}
-                        name={field.name}
-                        value={option}
-                        checked={
-                          field.type === 'radio' 
-                            ? formData[field.name] === option 
-                            : (formData[field.name] || []).includes(option)
-                        }
-                        onChange={(e) => {
-                          if (field.type === 'radio') {
-                            handleRadioChange(field.name, option);
-                          } else {
-                            handleCheckboxChange(field.name, option, e.target.checked);
-                          }
-                        }}
-                        className={`w-5 h-5 text-gold-500 focus:ring-gold-400 border-slate-300 ${field.type === 'radio' ? 'focus:ring-2' : 'rounded'} transition-all`}
-                      />
-                    </div>
-                    <div className={`ml-4 text-[15px] font-semibold leading-snug transition-colors ${
-                      (field.type === 'radio' && formData[field.name] === option) || 
-                      (field.type === 'checkbox' && (formData[field.name] || []).includes(option))
-                        ? 'text-gold-900'
-                        : 'text-slate-600 group-hover:text-slate-900'
-                    }`}>
-                      {option}
-                    </div>
-                  </label>
-                ))}
+              <div className="flex flex-col gap-3">
+                {field.options.map((optionObj) => {
+                  const optionLabel = optionObj.label;
+                  const optionDescription = optionObj.description;
+                  const isSelected = field.type === 'radio' 
+                    ? formData[field.name] === optionLabel 
+                    : (formData[field.name] || []).includes(optionLabel);
+                  
+                  return (
+                    <label 
+                      key={optionLabel} 
+                      className={`flex flex-col rounded-xl border-2 cursor-pointer transition-all duration-300 group ${
+                        isSelected
+                          ? 'border-gold-400 bg-gold-50/20 shadow-sm'
+                          : 'border-slate-200 bg-white hover:border-gold-300 hover:shadow-sm'
+                      }`}
+                    >
+                      <div className="flex items-center p-4">
+                        <div className="flex items-center h-6 shrink-0">
+                          <input
+                            type={field.type}
+                            name={field.name}
+                            value={optionLabel}
+                            checked={isSelected}
+                            onChange={(e) => {
+                              if (field.type === 'radio') {
+                                handleRadioChange(field.name, optionLabel);
+                              } else {
+                                handleCheckboxChange(field.name, optionLabel, e.target.checked);
+                              }
+                            }}
+                            className={`w-5 h-5 text-gold-500 focus:ring-gold-400 border-slate-300 ${field.type === 'radio' ? 'focus:ring-2' : 'rounded'} transition-all`}
+                          />
+                        </div>
+                        <div className={`ml-4 text-[15px] font-semibold transition-colors ${
+                          isSelected
+                            ? 'text-gold-900'
+                            : 'text-slate-600 group-hover:text-slate-900'
+                        }`}>
+                          {optionLabel}
+                        </div>
+                      </div>
+                      
+                      {/* Accordion Expandable Content */}
+                      <div className={`grid transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${isSelected ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                        <div className="overflow-hidden">
+                          <div className="pb-4 pt-1 pr-4 ml-[3.25rem] text-sm text-slate-500 leading-relaxed">
+                            {optionDescription}
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+                  );
+                })}
               </div>
             </div>
           ))}
@@ -367,49 +355,6 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
         </div>
       </div>
 
-      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-        <SheetContent className="w-full sm:max-w-md overflow-y-auto">
-          <SheetHeader className="mb-6">
-            <div className="flex items-center gap-2 text-sm font-bold text-gov-blue-700 uppercase tracking-wider mb-2">
-              <Sparkles size={16} />
-              Sources & Legal Context
-            </div>
-            <SheetTitle className="text-xl">{activeContext}</SheetTitle>
-            <SheetDescription>
-              Understand the regulatory implications of this field.
-            </SheetDescription>
-          </SheetHeader>
-          
-          <div className="mt-4">
-            {isContextLoading ? (
-              <div className="flex flex-col items-center justify-center py-12 text-slate-500">
-                <div className="w-8 h-8 border-4 border-gov-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-                Analyzing regulatory acts and schedules...
-              </div>
-            ) : (
-              <div className="prose prose-sm prose-slate text-slate-700">
-                <p className="text-base leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100">
-                  {contextExplanation}
-                </p>
-                
-                <div className="mt-8">
-                  <h4 className="font-bold text-slate-900 mb-3 border-b pb-2">Primary Statutes</h4>
-                  <ul className="space-y-2">
-                    <li className="flex gap-2">
-                      <Scale className="text-slate-400 shrink-0 mt-0.5" size={16} />
-                      <span>Drugs and Cosmetics Act, 1940</span>
-                    </li>
-                    <li className="flex gap-2">
-                      <Scale className="text-slate-400 shrink-0 mt-0.5" size={16} />
-                      <span>Biological Diversity Act, 2002</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )}
-          </div>
-        </SheetContent>
-      </Sheet>
     </div>
   );
 }

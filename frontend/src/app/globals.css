@@ -6,14 +6,14 @@
 
 :root { /* Off-white / Pearl */ /* Dark Slate for text readability */
 
-  --gold-50: #fefce8;
-  --gold-100: #fef9c3;
-  --gold-200: #fef08a;
-  --gold-300: #fde047;
-  --gold-400: #facc15;
-  --gold-500: #eab308;
-  --gold-600: #ca8a04;
-  --gold-700: #a16207;
+  --gold-50: #fff7ed;
+  --gold-100: #ffedd5;
+  --gold-200: #fed7aa;
+  --gold-300: #fdba74;
+  --gold-400: #fb923c;
+  --gold-500: #f97316;
+  --gold-600: #ea580c;
+  --gold-700: #c2410c;
 
   --saffron: #f97316; /* Warm accent */
   --saffron-light: #ffedd5;
@@ -81,18 +81,40 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   /* Very subtle gradient overlay for premium feel */
-  background-image: radial-gradient(at 100% 0%, rgba(254, 249, 195, 0.4) 0px, transparent 50%),
+  background-image: radial-gradient(at 100% 0%, rgba(255, 237, 213, 0.4) 0px, transparent 50%),
                     radial-gradient(at 0% 100%, rgba(255, 237, 213, 0.4) 0px, transparent 50%);
   background-attachment: fixed;
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--gold-50);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-300);
+  border-radius: 8px;
+  border: 3px solid var(--gold-50);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-400);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-300) var(--gold-50);
 }
 
 /* Premium UI utilities */
 .formal-panel {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(253, 224, 71, 0.3); /* subtle gold border */
-  box-shadow: 0 4px 20px -2px rgba(234, 179, 8, 0.05), 0 0 3px rgba(0,0,0,0.02);
+  border: 1px solid rgba(253, 186, 116, 0.3); /* subtle bhagwa border */
+  box-shadow: 0 4px 20px -2px rgba(249, 115, 22, 0.05), 0 0 3px rgba(0,0,0,0.02);
 }
 
 .formal-input {
@@ -103,7 +125,7 @@ body {
 
 .formal-input:focus {
   border-color: var(--gold-400);
-  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15);
+  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.15);
   outline: none;
 }
 
