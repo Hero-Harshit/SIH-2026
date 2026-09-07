@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
 import { Settings, Database, ExternalLink, FileText, Search, Library, Scale } from "lucide-react";
 
@@ -30,34 +31,11 @@ export default function CorpusPage() {
   const placeholderDocs: { title: string; date: string }[] = [];
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Header />
       
       <div className="flex flex-1 w-full max-w-[1600px] mx-auto relative">
-        {/* Sidebar */}
-        <aside className="hidden lg:flex w-16 hover:w-64 fixed left-0 top-[73px] h-[calc(100vh-73px)] border-r border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-20 flex-col py-6 gap-4 group transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
-          <div className="px-3 w-full flex flex-col gap-3">
-            <Link href="/" className="w-full flex items-center gap-4 p-3 rounded-xl text-slate-400 dark:text-slate-500 hover:text-brand-600 hover:bg-brand-50/80 hover:shadow-sm transition-all relative overflow-hidden group/btn" title="Home">
-              <svg className="shrink-0" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Home</span>
-            </Link>
-            <Link href="/dashboard" className="w-full flex items-center gap-4 p-3 rounded-xl text-slate-400 dark:text-slate-500 hover:text-brand-600 hover:bg-brand-50/80 hover:shadow-sm transition-all relative overflow-hidden group/btn" title="Assessment">
-              <svg className="shrink-0" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-              <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Assessment</span>
-            </Link>
-            <div className="w-full flex items-center gap-4 p-3 rounded-xl text-brand-600 bg-brand-50/80 shadow-sm transition-all relative overflow-hidden group/btn" title="Legal Corpus">
-              <Database size={22} className="shrink-0" />
-              <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Legal Corpus</span>
-            </div>
-          </div>
-          
-          <div className="mt-auto px-3 w-full">
-            <Link href="/settings" className="w-full flex items-center gap-4 p-3 rounded-xl text-slate-400 dark:text-slate-500 hover:text-brand-600 hover:bg-brand-50/80 hover:shadow-sm transition-all relative overflow-hidden group/btn" title="Settings">
-              <Settings size={22} className="shrink-0" />
-              <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Settings</span>
-            </Link>
-          </div>
-        </aside>
+        <Sidebar />
 
         <div className="flex-1 lg:ml-16 w-full p-6 lg:p-12 animate-in fade-in zoom-in duration-500">
           <div className="max-w-6xl mx-auto space-y-12">

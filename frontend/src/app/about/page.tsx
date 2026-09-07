@@ -3,7 +3,7 @@ import { Info } from "lucide-react";
 
 export default function AboutUsPage() {
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Header />
       <div className="flex-1 w-full max-w-4xl mx-auto px-6 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500">
         <div className="w-24 h-24 mb-8 rounded-full bg-gradient-to-tr from-brand-400 to-brand-accent shadow-xl shadow-brand-500/20 flex items-center justify-center text-white">

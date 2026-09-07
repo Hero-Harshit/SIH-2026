@@ -1,6 +1,8 @@
 "use client";
 
 import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import Image from "next/image";
 import { Settings, Check, Palette, Moon } from "lucide-react";
 import Link from "next/link";
 import { useTheme } from "@/components/ThemeProvider";
@@ -40,34 +42,12 @@ export default function SettingsPage() {
   ] as const;
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col transition-colors duration-300">
+    <main className="min-h-screen flex flex-col transition-colors duration-300">
       <Header />
       
       <div className="flex flex-1 w-full max-w-[1600px] mx-auto relative">
         {/* Sidebar */}
-        <aside className="hidden lg:flex w-16 hover:w-64 fixed left-0 top-[73px] h-[calc(100vh-73px)] border-r border-brand-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-20 flex-col py-6 gap-4 group transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
-          <div className="px-3 w-full flex flex-col gap-3">
-            <Link href="/" className="w-full flex items-center gap-4 p-3 rounded-xl text-slate-400 dark:text-slate-500 dark:text-slate-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50/80 dark:hover:bg-slate-800/50 hover:shadow-sm transition-all relative overflow-hidden group/btn" title="Home">
-              <svg className="shrink-0" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Home</span>
-            </Link>
-            <Link href="/dashboard" className="w-full flex items-center gap-4 p-3 rounded-xl text-slate-400 dark:text-slate-500 dark:text-slate-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50/80 dark:hover:bg-slate-800/50 hover:shadow-sm transition-all relative overflow-hidden group/btn" title="Assessment">
-              <svg className="shrink-0" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-              <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Assessment</span>
-            </Link>
-            <Link href="/corpus" className="w-full flex items-center gap-4 p-3 rounded-xl text-slate-400 dark:text-slate-500 dark:text-slate-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50/80 dark:hover:bg-slate-800/50 hover:shadow-sm transition-all relative overflow-hidden group/btn" title="Legal Corpus">
-              <svg className="shrink-0" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
-              <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Legal Corpus</span>
-            </Link>
-          </div>
-          
-          <div className="mt-auto px-3 w-full">
-            <div className="w-full flex items-center gap-4 p-3 rounded-xl text-brand-600 dark:text-brand-400 bg-brand-50/80 dark:bg-slate-800/80 shadow-sm transition-all relative overflow-hidden group/btn" title="Settings">
-              <Settings size={22} className="shrink-0" />
-              <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Settings</span>
-            </div>
-          </div>
-        </aside>
+        <Sidebar />
 
         <div className="flex-1 lg:ml-16 w-full px-4 lg:px-12 flex justify-center items-center py-20">
           <div className="w-full max-w-5xl flex flex-col animate-in fade-in zoom-in duration-500">
@@ -110,8 +90,8 @@ export default function SettingsPage() {
                       )}
                       
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 shadow-sm border border-slate-200/50 dark:border-slate-700/50">
-                          <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                        <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 shadow-sm border border-slate-200/50 dark:border-slate-700/50 relative">
+                          <Image src={t.image} alt={t.name} fill className="object-cover" />
                         </div>
                         <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">
                           {t.name}
