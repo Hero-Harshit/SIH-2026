@@ -83,25 +83,32 @@
   --brand-accent-light: #dcfce7;
 }
 
+@theme {
+  --color-slate-950: #000000;
+  --color-slate-900: #000000;
+  --color-slate-800: #0a0a0a;
+  --color-slate-700: #171717;
+}
+
 /* DARK THEME */
 .dark, [data-theme="dark"] {
-  --brand-50: #0f172a;
-  --brand-100: #1e293b;
-  --brand-200: #334155;
-  --brand-300: #475569;
-  --brand-400: #64748b;
-  --brand-500: #94a3b8;
-  --brand-600: #cbd5e1;
-  --brand-700: #f1f5f9;
+  --brand-50: #000000;
+  --brand-100: #0a0a0a;
+  --brand-200: #171717;
+  --brand-300: #262626;
+  --brand-400: #404040;
+  --brand-500: #737373;
+  --brand-600: #a3a3a3;
+  --brand-700: #d4d4d4;
 
-  --brand-accent: #f8fafc;
-  --brand-accent-light: #1e293b;
+  --brand-accent: #ffffff;
+  --brand-accent-light: #171717;
 
-  --background: oklch(0.145 0 0);
+  --background: oklch(0 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.12 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
