@@ -11,31 +11,31 @@ export default function SettingsPage() {
   const themes = [
     {
       id: "saffron",
-      name: "Kesari Theme (Hindutva)",
-      description: "A vibrant theme honoring India's civilizational heritage, strength, and the spirit of selfless dedication to the nation.",
-      colors: ["bg-orange-100", "bg-orange-500", "bg-orange-700"],
-      icon: Palette
-    },
-    {
-      id: "dark",
-      name: "Dark Mode",
-      description: "A sleek, dark theme for low-light environments.",
-      colors: ["bg-slate-800", "bg-slate-600", "bg-slate-300"],
-      icon: Moon
+      name: "Kesari (Hindutva)",
+      description: "Designed to help you achieve absolute detachment from worldly desires, except for the desire to have a really vibrant & paavan (scared) user interface Filled with Bhagwaness (orange). Jai Shree Ram.",
+      colors: ["bg-orange-500", "bg-orange-200", "bg-white"],
+      image: "/themes/Kesari.jpg"
     },
     {
       id: "blue",
-      name: "Kartavya Theme (Bhim)",
-      description: "A deep, focused theme symbolizing technological progress, duty, and India's forward march on the global stage.",
-      colors: ["bg-blue-100", "bg-blue-500", "bg-blue-700"],
-      icon: Palette
+      name: "Pragati (Bhim)",
+      description: "Channel the profound, uncompromising intellect required to draft an entire national constitution. A deeply logical theme where every single pixel is guaranteed equal rights. Jai Bhim, Jai Bharat.",
+      colors: ["bg-blue-800", "bg-blue-300", "bg-white"],
+      image: "/themes/Pragati.jpg"
     },
     {
       id: "green",
-      name: "Samriddhi Theme (Ummah)",
-      description: "A refreshing theme representing the agricultural backbone of our nation and our commitment to a prosperous, green future.",
-      colors: ["bg-green-100", "bg-green-500", "bg-green-700"],
-      icon: Palette
+      name: "Samriddhi (Ummah)",
+      description: "Fostering a profound sense of universal brotherhood and global solidarity. The world could not have been anymore peaceful without you'll in it. Allah Hu Akbar.",
+      colors: ["bg-green-800", "bg-green-500", "bg-white"],
+      image: "/themes/Samriddhi.png"
+    },
+    {
+      id: "dark",
+      name: "Andhakar (Dark)",
+      description: "Embrace the cosmic void. For those moments when you realize all digital interfaces are merely Maya (an illusion), and you'd really just prefer to spare your corneas from the blinding light of reality. Andhera Kaayam Rahe.",
+      colors: ["bg-slate-800", "bg-slate-600", "bg-black"],
+      image: "/themes/Andhakar.jpg"
     }
   ] as const;
 
@@ -92,7 +92,6 @@ export default function SettingsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {themes.map((t) => {
                   const isActive = theme === t.id;
-                  const Icon = t.icon;
                   
                   return (
                     <button
@@ -111,26 +110,17 @@ export default function SettingsPage() {
                       )}
                       
                       <div className="flex items-center gap-3 mb-4">
-                        <div className={`p-2.5 rounded-lg text-white ${t.colors[1]}`}>
-                          <Icon size={20} />
+                        <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 shadow-sm border border-slate-200/50 dark:border-slate-700/50">
+                          <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
                         </div>
                         <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">
                           {t.name}
                         </h3>
                       </div>
                       
-                      <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 min-h-[40px]">
+                      <p className="text-sm text-slate-500 dark:text-slate-400 min-h-[40px]">
                         {t.description}
                       </p>
-                      
-                      <div className="flex gap-2">
-                        {t.colors.map((color, i) => (
-                          <div 
-                            key={i} 
-                            className={`w-8 h-8 rounded-full shadow-inner ${color}`} 
-                          />
-                        ))}
-                      </div>
                     </button>
                   );
                 })}
