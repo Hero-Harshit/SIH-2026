@@ -11,8 +11,8 @@ export default function SettingsPage() {
   const themes = [
     {
       id: "saffron",
-      name: "Sacred Saffron",
-      description: "The default warm and inviting orange theme.",
+      name: "Kesari Theme (Hindutva)",
+      description: "A vibrant theme honoring India's civilizational heritage, strength, and the spirit of selfless dedication to the nation.",
       colors: ["bg-orange-100", "bg-orange-500", "bg-orange-700"],
       icon: Palette
     },
@@ -25,15 +25,15 @@ export default function SettingsPage() {
     },
     {
       id: "blue",
-      name: "Blue Oceanic",
-      description: "A calm, professional blue theme.",
+      name: "Kartavya Theme (Bhim)",
+      description: "A deep, focused theme symbolizing technological progress, duty, and India's forward march on the global stage.",
       colors: ["bg-blue-100", "bg-blue-500", "bg-blue-700"],
       icon: Palette
     },
     {
       id: "green",
-      name: "Green Forest",
-      description: "A natural, refreshing green theme.",
+      name: "Samriddhi Theme (Ummah)",
+      description: "A refreshing theme representing the agricultural backbone of our nation and our commitment to a prosperous, green future.",
       colors: ["bg-green-100", "bg-green-500", "bg-green-700"],
       icon: Palette
     }
