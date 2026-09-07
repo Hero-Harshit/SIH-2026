@@ -7,9 +7,8 @@ export default function Header() {
     <>
       <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-brand-200/50 fixed top-0 left-0 w-full z-50 px-6 py-4 flex items-center justify-between shadow-sm">
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <div className="p-2 bg-gradient-to-br from-brand-400 to-brand-600 rounded-lg text-white shadow-sm">
-            <Scale size={24} />
-          </div>
+          {/* Invisible spacer to keep text in the exact same position */}
+          <div className="w-10 h-10 shrink-0"></div>
           <div>
             <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
               LAURA
