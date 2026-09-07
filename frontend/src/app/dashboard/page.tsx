@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <main className="min-h-screen pb-10 flex flex-col">
       <Header />
-      
+
       <div className="flex flex-1 w-full max-w-[1600px] mx-auto relative">
-        
+
         {/* Expanding Icon Rail (Left Edge on Desktop) */}
         <Sidebar />
 
@@ -32,7 +32,7 @@ export default function Home() {
                 <p className="text-muted-foreground max-w-md">
                   Your technical profile has been captured. The results interface is currently being redesigned for the next phase.
                 </p>
-                <button 
+                <button
                   onClick={() => setFormData(null)}
                   className="mt-8 px-6 py-2.5 rounded-xl text-sm font-semibold text-foreground bg-card text-card-foreground border border-border hover:border-brand-400 hover:text-brand-700 shadow-sm transition-all"
                 >

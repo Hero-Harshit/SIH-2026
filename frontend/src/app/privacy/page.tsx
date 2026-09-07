@@ -88,7 +88,7 @@ export default function PrivacyPage() {
   return (
     <main className="min-h-screen flex flex-col transition-colors duration-300">
       <Header />
-      
+
       <div className="flex flex-1 w-full max-w-[1600px] mx-auto relative">
         {/* Sidebar */}
         <Sidebar />
@@ -96,7 +96,7 @@ export default function PrivacyPage() {
         {/* Main Content */}
         <div className="flex-1 lg:ml-16 w-full px-4 lg:px-12 flex flex-col items-center py-12 md:py-20 overflow-y-auto">
           <div className="w-full max-w-6xl flex flex-col animate-in fade-in zoom-in duration-500">
-            
+
             {/* Hero Section */}
             <div className="flex flex-col items-center justify-center text-center mb-12 space-y-6">
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-brand-400 to-brand-accent shadow-xl shadow-brand-500/20 flex items-center justify-center text-white mb-2">
@@ -131,8 +131,8 @@ export default function PrivacyPage() {
               {/* Left Column */}
               <div className="flex flex-col gap-6">
                 {policies.filter((_, i) => i % 2 === 0).map((policy, index) => (
-                  <details 
-                    key={index} 
+                  <details
+                    key={index}
                     className="group border border-slate-200 dark:border-zinc-800/80 rounded-2xl bg-white dark:bg-zinc-950/50 overflow-hidden [&_summary::-webkit-details-marker]:hidden shadow-sm hover:shadow-md hover:border-brand-300 dark:hover:border-zinc-700 transition-all duration-300"
                   >
                     <summary className="flex items-start justify-between cursor-pointer p-6 outline-none select-none">
@@ -153,8 +153,8 @@ export default function PrivacyPage() {
               {/* Right Column */}
               <div className="flex flex-col gap-6">
                 {policies.filter((_, i) => i % 2 !== 0).map((policy, index) => (
-                  <details 
-                    key={index} 
+                  <details
+                    key={index}
                     className="group border border-slate-200 dark:border-zinc-800/80 rounded-2xl bg-white dark:bg-zinc-950/50 overflow-hidden [&_summary::-webkit-details-marker]:hidden shadow-sm hover:shadow-md hover:border-brand-300 dark:hover:border-zinc-700 transition-all duration-300"
                   >
                     <summary className="flex items-start justify-between cursor-pointer p-6 outline-none select-none">

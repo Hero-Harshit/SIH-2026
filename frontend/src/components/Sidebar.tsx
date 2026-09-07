@@ -44,23 +44,25 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="hidden lg:flex w-16 hover:w-64 fixed left-0 top-[73px] h-[calc(100vh-73px)] border-r border-slate-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl z-50 flex-col py-6 gap-4 group transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
-      <div className="px-3 w-full flex flex-col gap-3">
+    <aside className="hidden lg:flex w-16 hover:w-64 fixed left-0 top-[73px] h-[calc(100vh-73px)] border-r border-slate-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl z-50 flex-col py-6 gap-2 group transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
+      <div className="px-2 w-full flex flex-col gap-2">
         {links.map((link) => {
           const isActive = pathname === link.href;
           return (
             <Link
               key={link.name}
               href={link.href}
-              className={`w-full flex items-center gap-4 p-3 rounded-xl transition-all relative overflow-hidden group/btn ${
+              className={`w-full flex items-center h-12 rounded-xl transition-all relative overflow-hidden group/btn ${
                 isActive 
                   ? "text-brand-600 bg-brand-50/80 shadow-sm dark:bg-brand-900/20 dark:text-brand-400" 
                   : "text-slate-400 dark:text-slate-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50/80 dark:hover:bg-zinc-900/50 hover:shadow-sm"
               }`}
               title={link.name}
             >
-              {link.icon}
-              <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                {link.icon}
+              </div>
+              <span className="ml-2 font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                 {link.name}
               </span>
             </Link>
@@ -68,18 +70,20 @@ export default function Sidebar() {
         })}
       </div>
       
-      <div className="mt-auto px-3 w-full">
+      <div className="mt-auto px-2 w-full">
         <Link
           href="/settings"
-          className={`w-full flex items-center gap-4 p-3 rounded-xl transition-all relative overflow-hidden group/btn ${
+          className={`w-full flex items-center h-12 rounded-xl transition-all relative overflow-hidden group/btn ${
             pathname === "/settings"
               ? "text-brand-600 bg-brand-50/80 shadow-sm dark:bg-brand-900/20 dark:text-brand-400" 
               : "text-slate-400 dark:text-slate-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50/80 dark:hover:bg-zinc-900/50 hover:shadow-sm"
           }`}
           title="Settings"
         >
-          <Settings size={22} className="shrink-0" />
-          <span className="font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+          <div className="w-12 h-12 flex items-center justify-center shrink-0">
+            <Settings size={22} className="shrink-0" />
+          </div>
+          <span className="ml-2 font-semibold text-sm tracking-wide whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
             Settings
           </span>
         </Link>

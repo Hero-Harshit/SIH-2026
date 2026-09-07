@@ -33,13 +33,13 @@ export default function CorpusPage() {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
-      
+
       <div className="flex flex-1 w-full max-w-[1600px] mx-auto relative">
         <Sidebar />
 
         <div className="flex-1 lg:ml-16 w-full p-6 lg:p-12 animate-in fade-in zoom-in duration-500">
           <div className="max-w-6xl mx-auto space-y-12">
-            
+
             {/* Header Section */}
             <div className="text-center md:text-left space-y-4">
               <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-accent tracking-tight pb-2">
@@ -67,7 +67,7 @@ export default function CorpusPage() {
                   >
                     {/* Decorative gradient blur */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-100 to-transparent rounded-full opacity-50 blur-2xl group-hover:opacity-100 transition-opacity"></div>
-                    
+
                     <div className="relative z-10 flex flex-col h-full">
                       <div className="w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                         {source.icon}
@@ -77,7 +77,7 @@ export default function CorpusPage() {
                       <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">
                         {source.desc}
                       </p>
-                      
+
                       <div className="flex items-center text-sm font-semibold text-slate-400 dark:text-slate-500 group-hover:text-brand-600 transition-colors">
                         <span>Access Database</span>
                         <ExternalLink className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
@@ -99,7 +99,7 @@ export default function CorpusPage() {
                   Google Docs
                 </span>
               </div>
-              
+
               <div className="grid grid-cols-1 gap-4">
                 {placeholderDocs.map((doc, idx) => (
                   <div key={idx} className="flex items-center justify-between p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-brand-200 transition-all duration-300 cursor-pointer group">

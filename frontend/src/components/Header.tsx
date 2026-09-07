@@ -5,19 +5,22 @@ import Link from "next/link";
 export default function Header() {
   return (
     <>
-      <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-brand-200/50 fixed top-0 left-0 w-full z-50 px-6 py-4 flex items-center justify-between shadow-sm">
-        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          {/* Invisible spacer to keep text in the exact same position */}
-          <div className="w-10 h-10 shrink-0"></div>
-          <div>
-            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
-              LAURA
-            </h1>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block uppercase tracking-wider">
-              Legal & Ayurvedic Unified Retrieval Assistant
-            </p>
-          </div>
-        </Link>
+      <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-brand-200/50 fixed top-0 left-0 w-full h-[73px] z-50 pl-2 pr-6 flex items-center justify-between shadow-sm">
+        <div className="w-12 h-12 flex items-center justify-center shrink-0">
+          <div 
+            className="w-8 h-10 bg-slate-800 dark:bg-slate-100" 
+            style={{ 
+              maskImage: 'url(/emblem.svg)', 
+              WebkitMaskImage: 'url(/emblem.svg)', 
+              maskSize: 'contain', 
+              WebkitMaskSize: 'contain', 
+              maskRepeat: 'no-repeat', 
+              WebkitMaskRepeat: 'no-repeat', 
+              maskPosition: 'center', 
+              WebkitMaskPosition: 'center' 
+            }}
+          ></div>
+        </div>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-500 dark:text-slate-400">
           <Link href="/about" className="hover:text-brand-600 transition-colors">
