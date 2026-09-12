@@ -202,11 +202,31 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  /* Very subtle gradient overlay for premium feel - tied to theme */
-  background-image: radial-gradient(at 100% 0%, var(--brand-100) 0px, transparent 50%),
-                    radial-gradient(at 0% 100%, var(--brand-100) 0px, transparent 50%);
-  background-attachment: fixed;
   background-color: var(--background);
+  background-image: 
+    radial-gradient(circle at 15% 15%, var(--brand-100) 0%, transparent 35%),
+    radial-gradient(circle at 85% 85%, var(--brand-200) 0%, transparent 35%),
+    radial-gradient(circle at 85% 15%, var(--brand-50) 0%, transparent 35%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  animation: mesh-pulse 12s ease-in-out infinite alternate;
+}
+
+@keyframes mesh-pulse {
+  0% { 
+    background-size: 100% 100%; 
+    background-position: 50% 50%; 
+  }
+  100% { 
+    background-size: 350% 350%; 
+    background-position: 50% 50%; 
+  }
+}
+
+/* Pitch Black Dark Theme - No Gradient */
+.dark body, [data-theme="dark"] body {
+  background-image: none !important;
+  background-color: #000000 !important;
 }
 
 /* Custom Premium Scrollbar */
