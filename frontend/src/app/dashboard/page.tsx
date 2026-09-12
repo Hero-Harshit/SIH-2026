@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import LegalIntakeForm from "@/components/LegalIntakeForm";
-import ChatInterface from "@/components/ChatInterface";
 import { Sparkles } from "lucide-react";
 
 export default function Home() {
-  const [formData, setFormData] = useState<any>(null);
+  const [formData, setFormData] = useState<Record<string, unknown> | null>(null);
 
   return (
     <main className="min-h-screen pb-10 flex flex-col">

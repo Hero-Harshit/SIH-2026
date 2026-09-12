@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-import Link from "next/link";
-import { Settings, Database, ExternalLink, FileText, Search, Library, Scale } from "lucide-react";
+import { Database, ExternalLink, FileText, Search, Library, Scale } from "lucide-react";
 
 export default function CorpusPage() {
   const officialSources = [

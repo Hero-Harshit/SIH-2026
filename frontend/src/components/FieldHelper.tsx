@@ -28,7 +28,7 @@ export default function FieldHelper({ title }: FieldHelperProps) {
         <h4 className="font-bold text-slate-800 dark:text-slate-100 text-[15px] mb-3">{title}</h4>
         
         <p className="text-sm leading-relaxed text-slate-600 bg-slate-50 dark:bg-slate-950 p-3.5 rounded-xl border border-slate-100 dark:border-slate-800 mb-4">
-          This is the legal context and sources for "{title}". The AI engine would query the database here to provide actionable insights.
+          This is the legal context and sources for &quot;{title}&quot;. The AI engine would query the database here to provide actionable insights.
         </p>
 
         <div>

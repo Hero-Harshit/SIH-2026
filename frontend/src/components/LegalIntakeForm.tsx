@@ -5,7 +5,7 @@ import { ArrowLeft, CheckCircle2, ChevronRight, Scale } from "lucide-react";
 import FieldHelper from "./FieldHelper";
 
 interface LegalIntakeFormProps {
-  onComplete: (data: any) => void;
+  onComplete: (data: Record<string, string | string[]>) => void;
 }
 
 const MODULES = [
@@ -189,9 +189,9 @@ const MODULES = [
 
 export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState<Record<string, any>>({});
-
-  const module = MODULES[currentStep];
+  const [formData, setFormData] = useState<Record<string, string | string[]>>({});
+  
+  const currentModule = MODULES[currentStep];
   const isLastStep = currentStep === MODULES.length - 1;
 
   const handleRadioChange = (fieldName: string, value: string) => {
@@ -200,7 +200,7 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
 
   const handleCheckboxChange = (fieldName: string, value: string, checked: boolean) => {
     setFormData((prev) => {
-      const currentList = prev[fieldName] || [];
+      const currentList = (prev[fieldName] as string[]) || [];
       if (checked) {
         return { ...prev, [fieldName]: [...currentList, value] };
       } else {
@@ -261,14 +261,14 @@ export default function LegalIntakeForm({ onComplete }: LegalIntakeFormProps) {
       <div className="formal-panel rounded-2xl p-8 lg:p-12 relative z-30 bg-card text-card-foreground">
         <div className="mb-10 pb-6 border-b border-brand-100">
           <div className="flex items-center gap-2 text-sm font-bold text-brand-600 uppercase tracking-widest mb-2">
-            Module {module.id} of {MODULES.length}
+            Module {currentModule.id} of {MODULES.length}
           </div>
-          <h3 className="text-3xl font-bold text-foreground">{module.title}</h3>
-          <p className="text-muted-foreground mt-3 text-base leading-relaxed">{module.description}</p>
+          <h3 className="text-3xl font-bold text-foreground">{currentModule.title}</h3>
+          <p className="text-muted-foreground mt-3 text-base leading-relaxed">{currentModule.description}</p>
         </div>
 
         <div className="space-y-12">
-          {module.fields.map((field) => (
+          {currentModule.fields.map((field) => (
             <div key={field.name} className="animate-in slide-in-from-right-4 duration-300">
               <label className="block text-lg font-bold text-foreground mb-5 flex items-center">
                 {field.label}

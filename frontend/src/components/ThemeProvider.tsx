@@ -14,17 +14,6 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("saffron");
 
-  // Load theme from localStorage on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("laura-theme") as Theme;
-    if (savedTheme) {
-      setThemeState(savedTheme);
-      applyTheme(savedTheme);
-    } else {
-      applyTheme("saffron");
-    }
-  }, []);
-
   const applyTheme = (newTheme: Theme) => {
     const html = document.documentElement;
     // Remove dark class if changing from dark theme
@@ -39,6 +28,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       html.setAttribute("data-theme", newTheme);
     }
   };
+
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("laura-theme") as Theme;
+    if (savedTheme) {
+      // eslint-disable-next-line
+      setThemeState(savedTheme);
+      applyTheme(savedTheme);
+    } else {
+      applyTheme("saffron");
+    }
+  }, []);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);

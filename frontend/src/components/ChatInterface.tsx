@@ -12,7 +12,7 @@ interface Message {
   citations?: { source: string; section: string; url: string }[];
 }
 
-export default function ChatInterface({ formData }: { formData: any }) {
+export default function ChatInterface({ formData }: { formData: { applicantType?: string; [key: string]: unknown } }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(true); // Starts true for initial processing

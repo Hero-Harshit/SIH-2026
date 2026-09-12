@@ -3,8 +3,7 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Image from "next/image";
-import { Settings, Check, Palette, Moon } from "lucide-react";
-import Link from "next/link";
+import { Settings, Check, Palette } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 
 export default function SettingsPage() {

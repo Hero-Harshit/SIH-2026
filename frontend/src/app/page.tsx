@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
-import { Sparkles, ArrowRight, Scale, ShieldCheck, FileText, Search, BookOpen, Layers } from "lucide-react";
+import { ArrowRight, Scale, ShieldCheck, FileText, Search, BookOpen, Layers } from "lucide-react";
 
 export default function HomePage() {
   return (
