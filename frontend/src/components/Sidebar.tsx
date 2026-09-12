@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Settings } from "lucide-react";
-
+import { Settings, UserPlus } from "lucide-react";
 export default function Sidebar() {
   const pathname = usePathname();
 
@@ -39,6 +38,13 @@ export default function Sidebar() {
           <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
           <path d="M3 12A9 3 0 0 0 21 12"/>
         </svg>
+      )
+    },
+    {
+      name: "Expert Escalation",
+      href: "/expert-escalation",
+      icon: (
+        <UserPlus size={22} className="shrink-0" />
       )
     }
   ];
