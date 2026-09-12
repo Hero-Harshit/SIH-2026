@@ -50,7 +50,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="hidden lg:flex w-16 hover:w-64 fixed left-0 top-[73px] h-[calc(100vh-73px)] border-r border-slate-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl z-50 flex-col py-6 gap-2 group transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
+    <aside className="hidden lg:flex w-16 hover:w-64 fixed left-0 top-[73px] h-[calc(100vh-73px)] border-r border-brand-600 dark:border-white/20 bg-brand-50/80 dark:bg-zinc-950/80 backdrop-blur-xl z-50 flex-col py-6 gap-2 group transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
       <div className="px-2 w-full flex flex-col gap-2">
         {links.map((link) => {
           const isActive = pathname === link.href;

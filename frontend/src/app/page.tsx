@@ -25,7 +25,7 @@ export default function HomePage() {
         <div className="w-full max-w-6xl flex flex-col items-center justify-center text-center animate-in fade-in slide-in-from-bottom-8 duration-500">
 
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-brand-200/60 text-brand-700 text-sm font-bold mb-8 shadow-sm hover:shadow-md hover:bg-white dark:hover:bg-slate-900 transition-all cursor-pointer group">
-            <Sparkles className="w-4 h-4 text-brand-500 group-hover:text-brand-600" />
+
             <span>Welcome to the Future of Legal Compliance</span>
           </div>
 
