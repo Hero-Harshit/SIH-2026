@@ -18,6 +18,9 @@
   --brand-accent: #f97316;
   --brand-accent-light: #ffedd5;
   --forest: #166534;
+  
+  --theme-sidebar: #431407; /* dark orange */
+  --theme-sidebar-text: #fff7ed; /* brand-50 */
 
   --background: oklch(1 0 0); 
   --foreground: oklch(0.145 0 0); 
@@ -66,6 +69,9 @@
 
   --brand-accent: #2563eb;
   --brand-accent-light: #dbeafe;
+
+  --theme-sidebar: #172554; /* dark blue */
+  --theme-sidebar-text: #eff6ff; /* brand-50 */
 }
 
 /* GREEN FOREST THEME */
@@ -81,6 +87,9 @@
 
   --brand-accent: #15803d;
   --brand-accent-light: #dcfce7;
+
+  --theme-sidebar: #052e16; /* dark green */
+  --theme-sidebar-text: #f0fdf4; /* brand-50 */
 }
 
 @theme {
@@ -103,6 +112,9 @@
 
   --brand-accent: #ffffff;
   --brand-accent-light: #171717;
+
+  --theme-sidebar: #0a0a0a; /* dark gray */
+  --theme-sidebar-text: #e5e5e5; /* light text */
 
   --background: oklch(0 0 0);
   --foreground: oklch(0.985 0 0);
@@ -164,6 +176,9 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+  
+  --color-theme-sidebar: var(--theme-sidebar);
+  --color-theme-sidebar-text: var(--theme-sidebar-text);
   
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
@@ -248,6 +263,16 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--brand-300) var(--brand-50);
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Premium UI utilities */
