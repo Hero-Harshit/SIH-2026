@@ -291,4 +291,8 @@ body {
   html {
     @apply font-sans;
   }
+  /* Global tactile micro-interactions for all buttons */
+  button {
+    @apply active:scale-95 transition-transform duration-200;
+  }
 }

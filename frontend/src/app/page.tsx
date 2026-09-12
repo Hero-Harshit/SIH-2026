@@ -41,11 +41,11 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <Link href="/dashboard" className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:bg-slate-800 transition-all duration-300 w-full sm:w-auto">
+            <Link href="/dashboard" className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg shadow-xl border border-transparent dark:border-white/20 hover:shadow-2xl hover:-translate-y-1 hover:bg-slate-800 active:scale-95 transition-all duration-300 w-full sm:w-auto">
               Start Assessment
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link href="/corpus" className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold text-lg shadow-lg border border-slate-100 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto">
+            <Link href="/corpus" className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold text-lg shadow-lg border border-slate-100 dark:border-white/20 hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 w-full sm:w-auto">
               Browse Legal Corpus
               <BookOpen size={20} className="text-brand-500 group-hover:scale-110 transition-transform" />
             </Link>

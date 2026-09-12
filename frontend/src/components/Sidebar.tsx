@@ -58,7 +58,7 @@ export default function Sidebar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`w-full flex items-center h-12 rounded-xl transition-all relative overflow-hidden group/btn ${
+              className={`w-full flex items-center h-12 rounded-xl active:scale-95 transition-all relative overflow-hidden group/btn ${
                 isActive 
                   ? "text-brand-600 bg-brand-50/80 shadow-sm dark:bg-brand-900/20 dark:text-brand-400" 
                   : "text-slate-400 dark:text-slate-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50/80 dark:hover:bg-zinc-900/50 hover:shadow-sm"
@@ -79,7 +79,7 @@ export default function Sidebar() {
       <div className="mt-auto px-2 w-full">
         <Link
           href="/settings"
-          className={`w-full flex items-center h-12 rounded-xl transition-all relative overflow-hidden group/btn ${
+          className={`w-full flex items-center h-12 rounded-xl active:scale-95 transition-all relative overflow-hidden group/btn ${
             pathname === "/settings"
               ? "text-brand-600 bg-brand-50/80 shadow-sm dark:bg-brand-900/20 dark:text-brand-400" 
               : "text-slate-400 dark:text-slate-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50/80 dark:hover:bg-zinc-900/50 hover:shadow-sm"
